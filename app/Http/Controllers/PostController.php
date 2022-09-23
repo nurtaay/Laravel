@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostController extends Controller
 {
+
+    public function postsByCat(Category $category){
+        $posts = $category->posts;
+        return view('posts.index', ['posts' =>$posts]);
+    }
 
     public function index(){
         $allPosts = Post::all();

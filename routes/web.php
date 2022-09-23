@@ -7,9 +7,8 @@ Route::get('/', function (){
     return redirect()->route('posts.index');
 });
 
-
 Route::resource('posts', PostController::class);
-
+Route::get('/posts/bycat/{category}', [PostController::class, 'postsByCat']);
 
 
 //Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
