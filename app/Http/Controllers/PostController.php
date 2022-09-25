@@ -9,24 +9,25 @@ use App\Models\Post;
 class PostController extends Controller
 {
 
-    public function postsByCat(Category $category){
+    public function postsByCategory(Category $category){
         $posts = $category->posts;
-        return view('posts.index', ['posts' =>$posts]);
+        return view('posts.index', ['posts' =>$posts, 'categories' => Category::all()]);
     }
 
     public function index(){
         $allPosts = Post::all();
-        return view('posts.index', ['posts' =>$allPosts]);
+        return view('posts.index', ['posts' =>$allPosts, 'categories' => Category::all()]);
     }
 
     public function create(){
-        return view('posts.create');
+        return view('posts.create', ['categories' => Category::all()]);
     }
 
     public function store(Request $req){
         Post::create([
             'title' => $req->input('title'),
-            'content' => $req->input('content')
+            'content' => $req->input('content'),
+            'category_id' => $req->input('category_id')
         ]);
         return redirect()->route('posts.index');
     }
@@ -36,13 +37,14 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
-        return view('posts.edit',['post'=>$post]);
+        return view('posts.edit',['post'=>$post, 'categories' => Category::all()]);
     }
 
     public function update(Request $request,Post $post){
        $post->update([
-         'title' => $request->input('title'),
-         'content' => $request->input('content')
+           'title' => $request->input('title'),
+           'content' => $request->input('content'),
+           'category_id' => $request->input('category_id')
        ]);
         return redirect()->route('posts.index');
     }
@@ -52,4 +54,3 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 }
-

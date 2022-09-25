@@ -6,6 +6,12 @@
         <title>Posts</title>
     </head>
     <body>
+
+        <a href="{{ route('posts.index') }}">All Posts</a>
+        @foreach($categories as $cat)
+            <a href="{{ route('posts.category', $cat->id) }}">{{ $cat->name }}</a>
+        @endforeach
+
         <a href="{{ route('posts.create') }}">Go to Create page</a>
 
         @foreach($posts as $post)
