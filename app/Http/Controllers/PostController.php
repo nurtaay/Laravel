@@ -24,12 +24,19 @@ class PostController extends Controller
     }
 
     public function store(Request $req){
+
+//       $validated = $req->validate([
+//           'title' => 'required|max:255',
+//           'content' => 'required',
+//           'category_id' => 'required|numeric|exists:categories,id'
+//        ]);
+
         Post::create([
             'title' => $req->input('title'),
             'content' => $req->input('content'),
             'category_id' => $req->input('category_id')
         ]);
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('message', 'Post saved');
     }
 
     public function show(Post $post){
