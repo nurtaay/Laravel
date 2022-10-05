@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function index(){
         $allPosts = Post::all();
-        return view('posts.index', ['posts' =>$allPosts, 'categories' => Category::all()]);
+        return view('posts.index', ['posts' =>$allPosts,'categories' => Category::all()]);
     }
 
     public function create(){
@@ -40,7 +40,7 @@ class PostController extends Controller
     }
 
     public function show(Post $post){
-        return view('posts.show', ['post'=>$post]);
+        return view('posts.show', ['post'=>$post , 'categories' => Category::all()]);
     }
 
     public function edit(Post $post){
@@ -53,7 +53,7 @@ class PostController extends Controller
            'content' => $request->input('content'),
            'category_id' => $request->input('category_id')
        ]);
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index', ['categories' => Category::all()]);
     }
 
     public function destroy(Post $post){

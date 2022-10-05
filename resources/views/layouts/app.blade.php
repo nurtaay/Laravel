@@ -30,7 +30,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
 
-
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('posts.index') }}">All posts</a>
@@ -38,7 +37,7 @@
 
                         @foreach($categories as $cat)
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('posts.category', $cat->id)}}">{{$cat->name}}</a>
+                                <a class="nav-link" href="{{ route('posts.category', $cat->id )}}">{{ $cat->name }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -60,7 +59,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre   >
                                     {{ Auth::user()->name }}
                                 </a>
 
